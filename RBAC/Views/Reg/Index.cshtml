@@ -1,0 +1,57 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>RBAC Demo - 注册</title>
+    <link href="~/Content/login.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.2.1.min.js"></script>
+</head>
+<body>
+    <div id="login">
+        <span class="form-title">注册</span>
+        <form action="#" method="post">
+            <div class="form-item">
+                <label>账号:</label>
+                <input type="text" name="username" />
+            </div>
+
+            <div class="form-item">
+                <label>密码:</label>
+                <input type="password" name="userpass" />
+            </div>
+            <div class="form-item">
+                <label>再次输入:</label>
+                <input type="password" name="pass" />
+            </div>
+            <input class="btn" type="button" value="注册" />
+        </form>
+    </div>
+    <script>
+        $(function () {
+            $(".btn").click(function () {
+                if ($("input[name='username']").val()==""||$("input[name='userpass']").val()=="") {
+                    alert("用户名密码不能为空")
+                    return
+                }
+                if ($("input[name='userpass']").val() != $("input[name='pass']").val()) {
+                    alert("再次密码输入不一致")
+                    return
+                }
+                $.post('@Url.Action("reg")', $("form").serialize(), function (data) {
+                    if (data.code===200) {
+                        window.location='@Url.Action("index","Home")'
+                    }else {
+                        alert("注册错误")
+                    }
+                })
+            })
+        })
+    </script>
+</body>
+</html>
+

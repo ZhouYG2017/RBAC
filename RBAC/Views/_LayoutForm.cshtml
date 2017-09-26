@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/form.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.2.1.min.js"></script>
+</head>
+<body>
+    <div>
+        @RenderBody()
+    </div>
+    <script>
+        $(function () {
+            $(".button").click(function () {     
+                $.post($("form").attr("action"), $("form").serialize(), function (data) {
+                    if (data.code == 200) {
+                        parent.location.reload()
+                    } else {
+                        alert("保存失败")
+                    }
+                })
+            })
+        })
+    </script>
+</body>
+</html>

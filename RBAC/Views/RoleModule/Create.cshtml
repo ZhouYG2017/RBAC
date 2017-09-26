@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/_LayoutForm.cshtml";
+}
+
+<form class="bootstrap-frm" action="@Url.Action("insert")">
+    <h1>用户模块管理 - 编辑</h1>
+    <label>
+        <span>角色名称</span>
+        @Html.DropDownList("RoleId", (IEnumerable<SelectListItem>)ViewBag.useroption)
+    </label>
+    <label>
+        <span>模块名称</span>
+        @Html.DropDownList("ModuleId", (IEnumerable<SelectListItem>)ViewBag.roleoption)
+    </label>
+    <label>
+        <span>&nbsp;</span>
+        <input type="button" class="button" value="提交" />
+    </label>
+</form>
+
